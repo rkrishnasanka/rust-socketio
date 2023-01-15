@@ -5,6 +5,16 @@ pub struct Server {
     clients_count: usize,
 }
 
+
+enum ConnectionErrorType{
+    TRANSPORT_UNKNOWN = 0,
+    SESSION_ID_UNKNOWN = 1,
+    BAD_HANDSHAKE_METHOD = 2,
+    BAD_REQUEST = 3,
+    FORBIDDEN = 4,
+    UNSUPPORTED_PROTOCOL_VERSION = 5,
+}
+
 pub struct CORS {
     enabled: bool,
     origin: String,
@@ -13,6 +23,14 @@ pub struct CORS {
     exposed_headers: String,
     credentials: bool,
     max_age: u32,
+}
+
+pub struct Server {
+    protocol: u8,
+    server: object, // Not sure how this would be handled, we need to have a http server constructor in my opinion
+    socket: object, // Not sure how this would be handled, in the javascript version this is a socket constructor that I need to use
+    transport: object, // Not sure how this would be handled, in the javascript version this is a transport constructor that I need to use
+    transports: HashMap<String, Transport>, 
 }
 
 pub struct ServerBuilder {
@@ -73,8 +91,8 @@ impl ServerBuilder {
 
     fn generate_id() -> String {
         // Generate a random id
-        let rng = rand::thread_rng();
-        return rng
+        let uid = uuid::Uuid::new_v4().to_string();
+        return uid;
     }
 }
 

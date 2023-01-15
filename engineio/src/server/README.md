@@ -1,4 +1,3 @@
-
 # Engine.IO: the realtime engine
 
 [![Build Status](https://github.com/socketio/engine.io/workflows/CI/badge.svg?branch=master)](https://github.com/socketio/engine.io/actions)
@@ -14,6 +13,7 @@ cross-browser/cross-device bi-directional communication layer for
 
 #### (A) Listening on a port
 
+#### TODO - Replace this with the rust code
 ```js
 const engine = require('engine.io');
 const server = engine.listen(80);
@@ -26,6 +26,7 @@ server.on('connection', socket => {
 
 #### (B) Intercepting requests for a http.Server
 
+#### TODO - Replace this with the rust code
 ```js
 const engine = require('engine.io');
 const http = require('http').createServer().listen(3000);
@@ -39,6 +40,7 @@ server.on('connection', socket => {
 
 #### (C) Passing in requests
 
+#### TODO - Replace this with the rust code
 ```js
 const engine = require('engine.io');
 const server = new engine.Server();
@@ -59,6 +61,7 @@ httpServer.on('request', (req, res) => {
 
 ### Client
 
+#### TODO - Replace this with the rust code
 ```html
 <script src="/path/to/engine.io.js"></script>
 <script>
@@ -130,6 +133,8 @@ These are exposed by `require('engine.io')`:
 
   The following are identical ways to instantiate a server and then attach it.
 
+
+#### TODO - Replace this with the rust code
 ```js
 const httpServer; // previously created with `http.createServer();` from node.js api.
 
@@ -162,6 +167,7 @@ const eioServer = require('engine.io')(httpServer, {
       - **Additionally** See Server `constructor` below for options you can pass for creating the new Server
     - **Returns** `Server`
 
+#### TODO - Replace this with the rust code
 ```js
 const engine = require('engine.io');
 const server = engine.listen(3000, {
@@ -183,6 +189,7 @@ server.on('connection', /* ... */);
       - **Additionally** See Server `constructor` below for options you can pass for creating the new Server
     - **Returns** `Server` a new Server instance.
 
+#### TODO - Replace this with the rust code
 ```js
 const engine = require('engine.io');
 const httpServer = require('http').createServer().listen(3000);
@@ -381,28 +388,6 @@ A representation of a client. _Inherits from EventEmitter_.
 - `close`
     - Disconnects the client
     - **Returns** `Socket` for chaining
-
-### Client
-
-<hr><br>
-
-Exposed in the `eio` global namespace (in the browser), or by
-`require('engine.io-client')` (in Node.JS).
-
-For the client API refer to the
-[engine-client](http://github.com/learnboost/engine.io-client) repository.
-
-## Debug / logging
-
-Engine.IO is powered by [debug](http://github.com/visionmedia/debug).
-In order to see all the debug output, run your app with the environment variable
-`DEBUG` including the desired scope.
-
-To see the output from all of Engine.IO's debugging scopes you can use:
-
-```
-DEBUG=engine* node myapp
-```
 
 ## Transports
 
